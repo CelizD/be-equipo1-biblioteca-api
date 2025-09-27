@@ -39,7 +39,7 @@ Nuestro objetivo es proporcionar una **base sólida y escalable** para futuras a
 - Git instalado  
 
 ### Pasos de Instalación
-```bash
+'''bash
 # Clonar el repositorio
 git clone https://github.com/celizd/be-equipo1-biblioteca-api.git
 cd be-equipo1-biblioteca-api
