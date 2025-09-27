@@ -70,6 +70,3 @@ Sube tus cambios:
 git push origin feature/nueva-funcionalidad
 Abre un Pull Request.
 
-### 📄 Licencia
-
-Este proyecto está bajo la Licencia MIT.
