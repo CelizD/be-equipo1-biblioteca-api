@@ -1,0 +1,9 @@
+# Ignorar la carpeta del entorno virtual
+venv/
+
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+
+# Archivos específicos de sistemas operativos
+.DS_Store
