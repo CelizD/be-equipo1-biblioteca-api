@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ titulo }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- Reset Básico y Estilos Globales --- */
+    :root {
+      --primary-color: #005A9C; /* Azul universitario */
+      --secondary-color: #FDB813; /* Acento dorado/amarillo */
+      --background-color: #F4F6F8;
+      --text-color: #333;
+      --card-bg: #FFFFFF;
+      --shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+
+    /* --- Encabezado y Navegación --- */
+    .main-header {
+      background-color: var(--card-bg);
+      box-shadow: var(--shadow);
+      padding: 1rem 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .main-header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+    .main-nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    .main-nav a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 700;
+      transition: color 0.3s ease;
+    }
+    .main-nav a:hover, .main-nav a.active {
+      color: var(--primary-color);
+    }
+
+    /* --- Sección de Búsqueda (Hero) --- */
+    .hero {
+      background: linear-gradient(rgba(0, 90, 156, 0.8), rgba(0, 90, 156, 0.8)), url('https://placehold.co/1200x400/EAEAEA/333333?text=Biblioteca') no-repeat center center;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+    }
+    .search-box {
+      display: flex;
+      justify-content: center;
+      max-width: 600px;
+      margin: 20px auto 0;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      border-radius: 50px;
+    }
+    .search-box input[type="text"] {
+      border: none;
+      padding: 15px 25px;
+      font-size: 1rem;
+      width: 100%;
+      border-radius: 50px 0 0 50px;
+    }
+    .search-box input[type="text"]:focus {
+      outline: none;
+    }
+    .search-box button {
+      border: none;
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      padding: 15px 30px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 0 50px 50px 0;
+      transition: background-color 0.3s ease;
+    }
+    .search-box button:hover {
+      background-color: #fca700;
+    }
+
+    /* --- Sección de Libros --- */
+    .books-section {
+      padding: 60px 0;
+    }
+    .books-section h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      color: var(--primary-color);
+    }
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 30px;
+    }
+    .book-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    }
+    .book-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+    }
+    .book-info {
+      padding: 20px;
+    }
+    .book-info h3 {
+      font-size: 1.1rem;
+      margin: 0 0 5px;
+    }
+    .book-info p {
+      font-size: 0.9rem;
+      color: #666;
+      margin: 0;
+    }
+
+    /* --- Pie de Página --- */
+    .main-footer {
+      background-color: #343a40;
+      color: #f8f9fa;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 60px;
+    }
+    .main-footer p {
+      margin: 0;
+    }
+    .team-info {
+      font-size: 0.85rem;
+      margin-top: 15px;
+      color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="main-header">
+    <div class="container">
+      <a href="/" class="logo">Biblioteca Cesun</a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#" class="active">Inicio</a></li>
+          <li><a href="#">Catálogo</a></li>
+          <li><a href="#">Mis Préstamos</a></li>
+          <li><a href="#">Iniciar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Bienvenidos</h1>
+      <p>Encuentra tu próximo libro favorito en nuestro catálogo digital.</p>
+      <div class="search-box">
+        <input type="text" placeholder="Buscar por título, autor o ISBN...">
+        <button type="submit">Buscar</button>
+      </div>
+    </section>
+
+    <section class="books-section container">
+      <h2>Nuevos Lanzamientos</h2>
+      <div class="books-grid">
+        <!-- Ejemplo de tarjeta de libro -->
+        <div class="book-card">
+          <img src="https://placehold.co/300x400/005A9C/FFFFFF?text=Libro+1" alt="Portada del libro">
+          <div class="book-info">
+            <h3>El Arte de Programar</h3>
+            <p>Autor Anónimo</p>
+          </div>
+        </div>
+        <div class="book-card">
+          <img src="https://placehold.co/300x400/333333/FFFFFF?text=Libro+2" alt="Portada del libro">
+          <div class="book-info">
+            <h3>Bases de Datos Modernas</h3>
+            <p>Jane Doe</p>
+          </div>
+        </div>
+        <div class="book-card">
+          <img src="https://placehold.co/300x400/FDB813/333333?text=Libro+3" alt="Portada del libro">
+          <div class="book-info">
+            <h3>Redes Neuronales</h3>
+            <p>John Smith</p>
+          </div>
+        </div>
+        <div class="book-card">
+          <img src="https://placehold.co/300x400/CCCCCC/333333?text=Libro+4" alt="Portada del libro">
+          <div class="book-info">
+            <h3>Ingeniería de Software</h3>
+            <p>Emily White</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="main-footer">
+    <div class="container">
+      <p>&copy; 2025 Biblioteca Cesun. Todos los derechos reservados.</p>
+      <p class="team-info">Desarrollado por: CELIZ MARTINEZ DANIEL (23030536) &bull; RIVERA BARRERA PAUL (23030497) &bull; ISMAEL CERVANTES CARRANZA (23030705)</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+
