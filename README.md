@@ -59,17 +59,13 @@ Luego abre en el navegador: http://127.0.0.1:5000/
 pip install -r requirements.txt
 
 ### 📂 Estructura del Proyecto
-be-equipo1-biblioteca-api/
-│
-|
-├── .gitignore          # Archivos y carpetas ignorados por Git
-├── app.py              # Archivo principal de la aplicación Flask
-├── requirements.txt    # Dependencias de Python
-├── README.md           # Documentación del proyecto
-│
-|
-└── templates/
-    └── index.html      # Plantilla HTML para la página de inicio
+# be-equipo1-biblioteca-api/
+.gitignore           Archivos y carpetas ignorados por Git
+app.py               Archivo principal de la aplicación Flask
+requirements.txt     Dependencias de Python
+README.md            Documentación del proyecto
+templates/
+     index.html       Plantilla HTML para la página de inicio
 
 ### 🤝 Contribuciones
 
