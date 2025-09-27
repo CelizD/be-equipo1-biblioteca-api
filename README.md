@@ -58,7 +58,7 @@ Luego abre en el navegador: http://127.0.0.1:5000/
 # Instalar dependencias
 pip install -r requirements.txt
 
-📂 Estructura del Proyecto
+### 📂 Estructura del Proyecto
 be-equipo1-biblioteca-api/
 │
 ├── .gitignore          # Archivos y carpetas ignorados por Git
@@ -69,29 +69,18 @@ be-equipo1-biblioteca-api/
 └── templates/
     └── index.html      # Plantilla HTML para la página de inicio
 
-🤝 Contribuciones
+### 🤝 Contribuciones
 
 Las contribuciones son bienvenidas.
-
 Haz un Fork del repositorio.
-
 Crea una nueva rama:
-
 git checkout -b feature/nueva-funcionalidad
-
-
 Realiza tus cambios y haz commit:
-
 git commit -m "feat: agrega nueva funcionalidad"
-
-
 Sube tus cambios:
-
 git push origin feature/nueva-funcionalidad
-
-
 Abre un Pull Request.
 
-📄 Licencia
+### 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT.
