@@ -1,99 +1,97 @@
-Biblioteca Cesun API
-<p align="center">
-<img src="https://www.google.com/search?q=https://placehold.co/600x300/005A9C/FFFFFF%3Ftext%3DBiblioteca%2BCesun%2BAPI%26font%3Draleway" alt="Banner de la Biblioteca Cesun API">
-</p>
+# 📚 API para la Biblioteca Cesun
 
-API RESTful desarrollada en Flask para gestionar los servicios de la Biblioteca Cesun. Este proyecto sirve como el backend central para operaciones clave como la administración del catálogo de libros, el registro de usuarios y el sistema de préstamos y devoluciones.
+Bienvenido al repositorio oficial de la **API para la Biblioteca Cesun**. Este proyecto representa la columna vertebral tecnológica diseñada para modernizar y optimizar la gestión de los servicios bibliotecarios.  
 
-👥 Integrantes del Equipo
-Nombre Completo
+A través de una robusta **API RESTful construida con Python y Flask**, ofrecemos una solución centralizada y eficiente para manejar operaciones esenciales como el catálogo de libros, el registro de usuarios y el sistema completo de préstamos y devoluciones.  
 
-Matrícula
+Nuestro objetivo es proporcionar una **base sólida y escalable** para futuras aplicaciones web o móviles, garantizando una experiencia de usuario fluida y un control administrativo completo.  
 
-GitHub Profile
+---
 
-CELIZ MARTINEZ DANIEL
+## 👥 Integrantes del Equipo
 
-23030536
+| Nombre Completo               | Matrícula  | Perfil de GitHub |
+|-------------------------------|------------|------------------|
+| CELIZ MARTINEZ DANIEL         | 23030536   | celizd           |
+| RIVERA BARRERA PAUL           | 23030497   |                  |
+| ISMAEL CERVANTES CARRANZA     | 23030705   |                  |
 
-celizd
+---
 
-RIVERA BARRERA PAUL
+## 🚀 Funcionalidades Clave
 
-23030497
+### Para Usuarios Regulares
+- 🔍 **Búsqueda Avanzada** → Buscar libros por título, autor o ISBN.  
+- 📥 **Solicitud de Préstamos** → Solicitar formalmente un libro del catálogo.  
+- 📤 **Gestión de Devoluciones** → Registrar la devolución de un libro prestado.  
 
-(Añadir perfil)
+### Para Administradores
+- 📚 **Gestión de Inventario (CRUD)** → Control completo del catálogo de libros (Crear, Leer, Actualizar, Borrar).  
+- 👤 **Gestión de Usuarios** → Registrar, modificar o suspender cuentas de usuario.  
+- 🔄 **Control de Préstamos** → Visualizar y manejar el estado actual de los préstamos activos.  
 
-ISMAEL CERVANTES CARRANZA
+---
 
-23030705
+## 🛠️ Guía de Instalación y Ejecución
 
-(Añadir perfil)
+### Requisitos Previos
+- Python 3.8 o superior  
+- Git instalado  
 
-🚀 Funcionalidades Clave
-Para Usuarios Regulares
-Búsqueda Avanzada: Permite buscar libros por título, autor o ISBN.
-
-Solicitud de Préstamos: Interfaz para que el usuario solicite formalmente un libro del catálogo.
-
-Gestión de Devoluciones: Proceso para registrar la devolución de un libro prestado.
-
-Para Administradores
-Gestión de Inventario (CRUD): Control completo sobre el catálogo de libros (Crear, Leer, Actualizar, Borrar).
-
-Gestión de Usuarios: Capacidad para registrar, modificar o suspender cuentas de usuario.
-
-Control de Préstamos: Visualización y manejo del estado actual de todos los préstamos activos.
-
-💻 Stack Tecnológico
-Backend: Python
-
-Framework: Flask
-
-Frontend Básico: HTML5, CSS3
-
-Entorno: venv (Entorno Virtual de Python)
-
-🛠️ Guía de Instalación y Ejecución
-Sigue estos pasos para instalar y poner en marcha el proyecto en tu entorno local.
-
-Requisitos Previos
-Python 3.8 o superior.
-
-Git para clonar el repositorio.
-
-Pasos de Instalación
-Clona el repositorio desde GitHub:
-
-git clone [https://github.com/celizd/be-equipo1-biblioteca-api.git](https://github.com/celizd/be-equipo1-biblioteca-api.git)
+### Pasos de Instalación
+```bash
+# Clonar el repositorio
+git clone https://github.com/celizd/be-equipo1-biblioteca-api.git
 cd be-equipo1-biblioteca-api
 
-Crea y activa un entorno virtual:
-
-# Crear el entorno virtual
+# Crear y activar entorno virtual
 python -m venv venv
-
-# Activar en Windows (CMD / PowerShell)
+# En Windows:
 .\venv\Scripts\activate
 
-Instala las dependencias del proyecto:
-
-pip install -r requirements.txt
-
 Ejecución del Servidor
-Con el entorno virtual activado, inicia la aplicación Flask:
-
 python app.py
 
-Abre tu navegador web y visita http://127.0.0.1:5000/ para ver la página de inicio.
+
+Luego abre en el navegador: http://127.0.0.1:5000/
+
+# Instalar dependencias
+pip install -r requirements.txt
 
 📂 Estructura del Proyecto
 be-equipo1-biblioteca-api/
 │
 ├── .gitignore          # Archivos y carpetas ignorados por Git
 ├── app.py              # Archivo principal de la aplicación Flask
-├── requirements.txt    # Lista de dependencias de Python
+├── requirements.txt    # Dependencias de Python
 ├── README.md           # Documentación del proyecto
 │
 └── templates/
     └── index.html      # Plantilla HTML para la página de inicio
+
+🤝 Contribuciones
+
+Las contribuciones son bienvenidas.
+
+Haz un Fork del repositorio.
+
+Crea una nueva rama:
+
+git checkout -b feature/nueva-funcionalidad
+
+
+Realiza tus cambios y haz commit:
+
+git commit -m "feat: agrega nueva funcionalidad"
+
+
+Sube tus cambios:
+
+git push origin feature/nueva-funcionalidad
+
+
+Abre un Pull Request.
+
+📄 Licencia
+
+Este proyecto está bajo la Licencia MIT.
