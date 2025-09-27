@@ -12,8 +12,8 @@ Nuestro objetivo es proporcionar una **base sólida y escalable** para futuras a
 
 | Nombre Completo               | Matrícula  | Perfil de GitHub |
 |-------------------------------|------------|------------------|
-| CELIZ MARTINEZ DANIEL         | 23030536   | celizd           |
-| RIVERA BARRERA PAUL           | 23030497   |                  |
+| CELIZ MARTINEZ DANIEL         | 23030536   | Celizd           |
+| RIVERA BARRERA PAUL           | 23030497   | ISMAELCervantes  |
 | ISMAEL CERVANTES CARRANZA     | 23030705   |                  |
 
 ---
