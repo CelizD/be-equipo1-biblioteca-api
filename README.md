@@ -73,29 +73,41 @@ Abre un Pull Request.
 
 ```mermaid
 classDiagram
-    direction TB
+    direction RL
+    class Usuario {
+        +int id
+        +String nombre
+        +String matricula
+        +String rol
+        --
+        +solicitarPrestamo(libro)
+        +devolverLibro(prestamo)
+    }
+
     class Libro {
         +String titulo
         +String autor
         +String genero
         +int paginas
-        +int año
+        +int anio
         +String idioma
         +bool disponible
         --
-        +_init_(titulo, autor, genero, paginas, año, idioma, disponible)
-        +prestar()
-        +devolver()
+        +marcarComoPrestado()
+        +marcarComoDevuelto()
     }
-    
-    Libro : +String titulo
-    Libro : +String autor
-    Libro : +String genero
-    Libro : +int paginas
-    Libro : +int año
-    Libro : +String idioma = "Español"
-    Libro : +bool disponible = True
-    
-    Libro : +_init_(titulo, autor, genero, paginas, año, idioma, disponible)
-    Libro : +prestar()
-    Libro : +devolver()
+
+    class Prestamo {
+        +int id
+        +int idUsuario
+        +int idLibro
+        +Date fechaPrestamo
+        +Date fechaDevolucion
+        +bool devuelto
+        --
+        +registrarDevolucion()
+        +calcularMulta()
+    }
+
+    Usuario "1" -- "0..*" Prestamo : "tiene"
+    Libro "1" -- "0..*" Prestamo : "es parte de"
