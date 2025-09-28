@@ -71,6 +71,7 @@ git push origin feature/nueva-funcionalidad
 Abre un Pull Request.
 ## 🏛️ Diagrama de la Arquitectura de Datos
 
+```mermaid
 classDiagram
     class Libro {
         +String titulo
