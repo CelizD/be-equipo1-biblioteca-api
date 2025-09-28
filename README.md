@@ -69,4 +69,19 @@ git commit -m "feat: agrega nueva funcionalidad"
 Sube tus cambios:
 git push origin feature/nueva-funcionalidad
 Abre un Pull Request.
+## 🏛️ Diagrama de la Arquitectura de Datos
 
+classDiagram
+    class Libro {
+        +String titulo
+        +String autor
+        +String genero
+        +int paginas
+        +int año
+        +String idioma = "Español"
+        +bool disponible = True
+        
+        +_init_(titulo, autor, genero, paginas, año, idioma, disponible)
+        +prestar()
+        +devolver()
+    }
