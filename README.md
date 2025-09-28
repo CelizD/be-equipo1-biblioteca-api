@@ -73,16 +73,29 @@ Abre un Pull Request.
 
 ```mermaid
 classDiagram
+    direction TB
     class Libro {
         +String titulo
         +String autor
         +String genero
         +int paginas
         +int año
-        +String idioma = "Español"
-        +bool disponible = True
-        
+        +String idioma
+        +bool disponible
+        --
         +_init_(titulo, autor, genero, paginas, año, idioma, disponible)
         +prestar()
         +devolver()
-    }
+    }
+    
+    Libro : +String titulo
+    Libro : +String autor
+    Libro : +String genero
+    Libro : +int paginas
+    Libro : +int año
+    Libro : +String idioma = "Español"
+    Libro : +bool disponible = True
+    
+    Libro : +_init_(titulo, autor, genero, paginas, año, idioma, disponible)
+    Libro : +prestar()
+    Libro : +devolver()
