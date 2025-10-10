@@ -1,4 +1,3 @@
-from .trainer import Trainer
 from .libros import libros 
 
 # src/models/autor.py

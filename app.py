@@ -1,21 +1,26 @@
-from flask import Flask, render_template
+import os
+import sys
 
-# Inicializa la aplicación Flask
-app = Flask(__name__)
+# Agrega la carpeta raíz del proyecto al path de Python.
+# Esto es crucial para que Python pueda encontrar los módulos 'src' y 'config'.
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-@app.route("/")
-def home():
-    """
-    Ruta principal que renderiza la página de inicio.
-    Verifica que la app y las plantillas funcionan correctamente.
-    """
-    return render_template(
-        "index.html",
-        titulo="Biblioteca Universitaria API",
-        mensaje="¡Bienvenido a la API de la Biblioteca Universitaria!"
-    )
+# Importa la función de fábrica desde el paquete src
+from src import create_app
 
-# Punto de entrada para ejecutar la aplicación
+# 1. Determina el entorno actual.
+#    Busca una variable de entorno llamada 'FLASK_ENV'. Si no la encuentra,
+#    usará 'development' como valor por defecto.
+env_name = os.getenv('FLASK_ENV', 'development')
+
+# 2. Crea la aplicación Flask.
+#    Pasa el nombre del entorno a la función de fábrica para que cargue
+#    la configuración correcta (DevelopmentConfig, ProductionConfig, etc.).
+app = create_app(env_name)
+
+# 3. Ejecuta la aplicación.
+#    Ya no se necesita 'debug=True', porque la configuración del entorno
+#    (cargada en el paso anterior) ahora controla ese y otros parámetros.
 if __name__ == "__main__":
-    # El modo debug se activa para ver los cambios en tiempo real
-    app.run(debug=True)
+    app.run()
+

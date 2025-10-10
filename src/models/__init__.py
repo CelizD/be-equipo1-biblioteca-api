@@ -32,7 +32,7 @@ def _register_blueprints(app: Flask) -> None:
     Aquí es donde se conectan las rutas de la API.
     """
     # Importamos el blueprint de libros desde el módulo de la API
-    from src.Api.libros import blueprint as libros_blueprint 
+    from src.api.libros import blueprint as libros_blueprint 
     
     # Registramos el blueprint con un prefijo de URL
     # Todas las rutas en este blueprint comenzarán con /libros
