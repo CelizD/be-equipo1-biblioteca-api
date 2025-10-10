@@ -1,0 +1,119 @@
+# src/api/libros.py
+from flask import Blueprint, jsonify, request
+
+# CORRECCIÓN: Usamos '..' para subir un nivel y encontrar la carpeta 'models'
+from ..models.libros import Libro
+from ..models.autor import Autor
+
+blueprint = Blueprint('libros', __name__)
+
+# --- Base de Datos en Memoria ---
+autores = {
+    "Gabriel García Márquez": Autor(nombre="Gabriel García Márquez", nacionalidad="Colombiano"),
+    "Antoine de Saint-Exupéry": Autor(nombre="Antoine de Saint-Exupéry", nacionalidad="Francés"),
+    "Miguel de Cervantes": Autor(nombre="Miguel de Cervantes", nacionalidad="Español")
+}
+
+libros: list[Libro] = [
+    Libro(
+        titulo="Cien años de soledad", 
+        autor=autores["Gabriel García Márquez"], 
+        genero="Realismo mágico", 
+        paginas=471, 
+        año=1967
+    ),
+    Libro(
+        titulo="El principito", 
+        autor=autores["Antoine de Saint-Exupéry"], 
+        genero="Fábula", 
+        paginas=96, 
+        año=1943
+    ),
+    Libro(
+        titulo="Don Quijote de la Mancha", 
+        autor=autores["Miguel de Cervantes"], 
+        genero="Novela", 
+        paginas=863, 
+        año=1605
+    ),
+]
+
+# --- Endpoints de la API ---
+
+@blueprint.route('/', methods=['GET'])
+def get_libros():
+    """Devuelve la lista completa de libros."""
+    return jsonify([libro.to_dict() for libro in libros])
+
+@blueprint.route('/<string:titulo>', methods=['GET'])
+def get_libro(titulo: str):
+    """Devuelve un libro específico por su título."""
+    libro = next((l for l in libros if l.titulo.lower() == titulo.lower()), None)
+    if libro:
+        return jsonify(libro.to_dict())
+    return jsonify({"error": "Libro no encontrado"}), 404
+
+@blueprint.route('/', methods=['POST'])
+def agregar_libro():
+    """Agrega un nuevo libro a la colección."""
+    data = request.get_json()
+    
+    required_fields = {"titulo", "autor", "genero", "paginas", "año"}
+    if not data or not required_fields.issubset(data) or "nombre" not in data.get("autor", {}):
+        return jsonify({"error": "Faltan campos obligatorios. El autor debe incluir un 'nombre'."}), 400
+
+    if any(l.titulo.lower() == data["titulo"].lower() for l in libros):
+        return jsonify({"error": "Ya existe un libro con ese título"}), 409
+
+    try:
+        nombre_autor = data["autor"]["nombre"]
+        if nombre_autor in autores:
+            autor_obj = autores[nombre_autor]
+        else:
+            autor_obj = Autor(
+                nombre=nombre_autor, 
+                nacionalidad=data["autor"].get("nacionalidad", "Desconocida")
+            )
+            autores[nombre_autor] = autor_obj
+
+        nuevo_libro = Libro(
+            titulo=data["titulo"],
+            autor=autor_obj,
+            genero=data["genero"],
+            paginas=data["paginas"],
+            año=data["año"]
+        )
+        libros.append(nuevo_libro)
+        return jsonify({"mensaje": "Libro agregado exitosamente", "libro": nuevo_libro.to_dict()}), 201
+    except (TypeError, KeyError) as e:
+        return jsonify({"error": f"Datos inválidos para crear el libro: {e}"}), 400
+
+@blueprint.route('/<string:titulo>', methods=['PUT'])
+def actualizar_libro(titulo: str):
+    """Actualiza la información de un libro."""
+    libro = next((l for l in libros if l.titulo.lower() == titulo.lower()), None)
+    if not libro:
+        return jsonify({"error": "Libro no encontrado"}), 404
+
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "No se proporcionaron datos para actualizar"}), 400
+
+    # Actualiza los campos del libro.
+    # Nota: para simplificar, esta ruta no permite cambiar el autor.
+    libro.genero = data.get("genero", libro.genero)
+    libro.paginas = data.get("paginas", libro.paginas)
+    libro.año = data.get("año", libro.año)
+    libro.disponible = data.get("disponible", libro.disponible)
+
+    return jsonify({"mensaje": "Libro actualizado exitosamente", "libro": libro.to_dict()})
+
+@blueprint.route('/<string:titulo>', methods=['DELETE'])
+def eliminar_libro(titulo: str):
+    """Elimina un libro por su título."""
+    libro_a_eliminar = next((l for l in libros if l.titulo.lower() == titulo.lower()), None)
+    if not libro_a_eliminar:
+        return jsonify({"error": "Libro no encontrado"}), 404
+    
+    libros.remove(libro_a_eliminar)
+    return jsonify({"mensaje": f"Libro '{titulo}' eliminado correctamente"})

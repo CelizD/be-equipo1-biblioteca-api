@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from src.models import Libro
+from src import Libro
 
 blueprint = Blueprint('libros', __name__)
 
@@ -70,3 +70,10 @@ def actualizar_disponibilidad(titulo: str):
 
     data = request.get_json()
     if not data or 'disponible' not in data:
+        return jsonify({"error": "El campo 'disponible' es obligatorio"}), 400
+    
+    try:
+        libro.disponible = bool(data['disponible'])
+        return jsonify({"mensaje": "Disponibilidad actualizada", "libro": libro_to_dict(libro)})
+    except ValueError:
+        return jsonify({"error": "El valor de 'disponible' debe ser un booleano (true/false)"}), 400
