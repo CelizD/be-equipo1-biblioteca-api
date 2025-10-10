@@ -1,6 +1,8 @@
+# src/Api/libros.py
+
 from flask import Blueprint, jsonify, request
 
-# Importaciones relativas: '..' significa "subir un directorio"
+# Importaciones relativas de los modelos corregidos
 from ..models.libros import Libro
 from ..models.autor import Autor
 
@@ -23,6 +25,7 @@ libros: list[Libro] = [
 
 @blueprint.route('/', methods=['GET'])
 def get_libros():
+    # El método to_dict() de Libro ahora maneja la conversión del autor
     return jsonify([libro.to_dict() for libro in libros])
 
 @blueprint.route('/<string:titulo>', methods=['GET'])
@@ -75,9 +78,9 @@ def actualizar_libro(titulo: str):
 
 @blueprint.route('/<string:titulo>', methods=['DELETE'])
 def eliminar_libro(titulo: str):
-    libro = next((l for l in libros if l.titulo.lower() == titulo.lower()), None)
-    if not libro:
+    libro_a_eliminar = next((l for l in libros if l.titulo.lower() == titulo.lower()), None)
+    if not libro_a_eliminar:
         return jsonify({"error": "Libro no encontrado"}), 404
     
-    libros.remove(libro)
+    libros.remove(libro_a_eliminar)
     return jsonify({"mensaje": f"Libro '{titulo}' eliminado"})

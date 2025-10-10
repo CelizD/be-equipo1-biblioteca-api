@@ -1,5 +1,3 @@
-from .libros import libros 
-
 # src/models/autor.py
 
 class Autor:
