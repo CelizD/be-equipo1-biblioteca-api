@@ -1,10 +1,10 @@
 # 📚 API para la Biblioteca Cesun
 
-Bienvenido al repositorio oficial de la **API para la Biblioteca Cesun**. Este proyecto representa la columna vertebral tecnológica diseñada para modernizar y optimizar la gestión de los servicios bibliotecarios.  
+Bienvenido al repositorio oficial de la **API para la Biblioteca Cesun**. Este proyecto representa la columna vertebral tecnológica diseñada para modernizar y optimizar la gestión de los servicios bibliotecarios.
 
-A través de una robusta **API RESTful construida con Python y Flask**, ofrecemos una solución centralizada y eficiente para manejar operaciones esenciales como el catálogo de libros, el registro de usuarios y el sistema completo de préstamos y devoluciones.  
+A través de una robusta **API RESTful construida con Python y Flask**, ofrecemos una solución centralizada y eficiente para manejar operaciones esenciales como el catálogo de libros y, en el futuro, el registro de usuarios y el sistema completo de préstamos y devoluciones.
 
-Nuestro objetivo es proporcionar una **base sólida y escalable** para futuras aplicaciones web o móviles, garantizando una experiencia de usuario fluida y un control administrativo completo.  
+Nuestro objetivo es proporcionar una **base sólida y escalable** para futuras aplicaciones web o móviles, garantizando una experiencia de usuario fluida y un control administrativo completo.
 
 ---
 
@@ -18,45 +18,88 @@ Nuestro objetivo es proporcionar una **base sólida y escalable** para futuras a
 
 ---
 
-## 🚀 Funcionalidades Clave
+## 🚀 Funcionalidades
 
-### Para Usuarios Regulares
-- 🔍 **Búsqueda Avanzada** → Buscar libros por título, autor o ISBN.  
-- 📥 **Solicitud de Préstamos** → Solicitar formalmente un libro del catálogo.  
-- 📤 **Gestión de Devoluciones** → Registrar la devolución de un libro prestado.  
+### Funcionalidades Actuales
+- 📚 **Gestión de Inventario (CRUD)** → Control completo del catálogo de libros (Crear, Leer, Actualizar, Borrar).
+- 🔄 **Persistencia de Datos** → La información se almacena en una base de datos SQLite.
+- 🌱 **Datos Semilla** → Carga inicial de datos para un arranque rápido.
 
-### Para Administradores
-- 📚 **Gestión de Inventario (CRUD)** → Control completo del catálogo de libros (Crear, Leer, Actualizar, Borrar).  
-- 👤 **Gestión de Usuarios** → Registrar, modificar o suspender cuentas de usuario.  
-- 🔄 **Control de Préstamos** → Visualizar y manejar el estado actual de los préstamos activos.  
+### Funcionalidades Planeadas
+- 🔍 **Búsqueda Avanzada** → Buscar libros por título, autor o ISBN.
+- 👤 **Gestión de Usuarios** → Registrar, modificar o suspender cuentas de usuario.
+- 📥 **Solicitud de Préstamos** → Solicitar formalmente un libro del catálogo.
+- 📤 **Gestión de Devoluciones** → Registrar la devolución de un libro prestado.
 
 ---
 
 ## 🛠️ Guía de Instalación y Ejecución
 
 ### Requisitos Previos
-- Python 3.8 o superior  
-- Git instalado  
+- Python 3.8 o superior
+- Git instalado
 
 ### Pasos de Instalación
-'''bash
-# Clonar el repositorio
-git clone https://github.com/celizd/be-equipo1-biblioteca-api.git
-cd be-equipo1-biblioteca-api
 
-# Crear y activar entorno virtual
-python -m venv venv
-# En Windows:
-.\venv\Scripts\activate
+1.  **Clonar el repositorio**
+    ```bash
+    git clone [https://github.com/celizd/be-equipo1-biblioteca-api.git](https://github.com/celizd/be-equipo1-biblioteca-api.git)
+    cd be-equipo1-biblioteca-api
+    ```
 
-Ejecución del Servidor
-python app.py
+2.  **Crear y activar entorno virtual**
+    ```bash
+    # Crear entorno
+    python -m venv venv
+    
+    # Activar en Windows
+    .\venv\Scripts\activate
+    
+    # Activar en macOS/Linux
+    source venv/bin/activate
+    ```
 
+3.  **Instalar dependencias**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Luego abre en el navegador: http://127.0.0.1:5000/
+### Configuración de la Base de Datos
 
-# Instalar dependencias
-pip install -r requirements.txt
+Para configurar la base de datos por primera vez o para reiniciarla, sigue estos pasos en la terminal:
+
+1.  **Establecer la variable de entorno de Flask**
+    ```bash
+    # En Windows (cmd)
+    set FLASK_APP=app.py
+
+    # En macOS/Linux
+    export FLASK_APP=app.py
+    ```
+
+2.  **Inicializar las migraciones** (solo se hace una vez por proyecto)
+    ```bash
+    flask db init
+    ```
+
+3.  **Crear y aplicar la migración inicial**
+    ```bash
+    flask db migrate -m "Creacion inicial de tablas"
+    flask db upgrade
+    ```
+
+4.  **Poblar la base de datos con datos de ejemplo**
+    ```bash
+    flask seed
+    ```
+
+### Ejecución del Servidor
+
+Una vez completada la instalación y configuración de la base de datos:
+ ```bash
+flask run
+ ```
+
 
 ### 🤝 Contribuciones
 
