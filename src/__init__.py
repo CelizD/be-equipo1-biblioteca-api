@@ -2,6 +2,7 @@
 import os
 from flask import Flask
 from .extensions import db, migrate
+from .cli import seed # Importamos el comando seed
 
 def create_app(env_name: str | None = 'development'):
     """
@@ -12,7 +13,7 @@ def create_app(env_name: str | None = 'development'):
     _load_config(app, env_name)
     _register_extensions(app)
     _register_blueprints(app)
-    # _register_cli(app) # Descomentaremos esto más adelante
+    _register_cli(app) # <-- PASO 1: Descomenta esta línea
 
     return app
 
@@ -32,3 +33,8 @@ def _register_blueprints(app: Flask) -> None:
     
     app.register_blueprint(main.blueprint)
     app.register_blueprint(libros.blueprint, url_prefix='/api/libros')
+
+# --- PASO 2: Añade esta nueva función al final ---
+def _register_cli(app: Flask) -> None:
+    """Registra los comandos de la CLI."""
+    app.cli.add_command(seed)
