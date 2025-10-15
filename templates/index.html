@@ -1,88 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Digital CESUN</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <title>Biblioteca API</title>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .hero-bg { 
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=2070&auto=format&fit=crop') no-repeat center center; 
-            background-size: cover; 
-        }
+        body { font-family: sans-serif; margin: 2em; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
     </style>
 </head>
-<body class="bg-slate-900 text-gray-200">
-
-    <header class="bg-slate-800/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="text-2xl font-bold text-white">
-                <span class="text-cyan-400">CESUN</span>Biblioteca
-            </a>
-            <ul class="flex items-center space-x-6">
-                <li><a href="#" class="hover:text-cyan-400 transition-colors">Catálogo</a></li>
-                <li><a href="#" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-2 px-4 rounded-lg transition-transform hover:scale-105">Iniciar Sesión</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section class="hero-bg text-white text-center py-20 px-6">
-            <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Bienvenido a la Biblioteca Digital</h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">Explora nuestro catálogo y encuentra tu próxima gran lectura.</p>
-        </section>
-
-        <section class="container mx-auto px-6 py-16">
-            <h2 class="text-3xl font-bold text-center mb-12">
-                Nuestra Colección
-                <span class="block w-20 h-1 bg-cyan-400 mx-auto mt-2"></span>
-            </h2>
-            
-            <!-- INICIO DEL CONTENIDO DINÁMICO -->
-            <!-- Este bloque recorre la lista 'libros' que le pasamos desde Flask -->
-            <div id="books-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-                
-                {% if libros %}
-                    {% for libro in libros %}
-                    <div class="book-card bg-slate-800 rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
-                        <!-- La imagen del libro se genera dinámicamente -->
-                        <img src="https://placehold.co/400x600/{{ loop.index * 123 }}/white?text={{ libro.titulo|replace(' ', '+') }}" alt="Portada del libro: {{ libro.titulo }}" class="w-full h-72 object-cover">
-                        <div class="p-5">
-                            <!-- El título y el autor vienen del objeto 'libro' -->
-                            <h3 class="text-lg font-bold text-white truncate" title="{{ libro.titulo }}">{{ libro.titulo }}</h3>
-                            <p class="text-sm text-gray-400 truncate">{{ libro.autor.nombre }}</p>
-                            
-                            <!-- La disponibilidad cambia de color según el estado -->
-                            <span class="text-xs mt-2 inline-block px-2 py-1 rounded-full 
-                                {% if libro.disponible %}
-                                    bg-green-500/20 text-green-300
-                                {% else %}
-                                    bg-red-500/20 text-red-300
-                                {% endif %}">
-                                {{ "Disponible" if libro.disponible else "No Disponible" }}
-                            </span>
-                        </div>
-                    </div>
-                    {% endfor %}
-                {% else %}
-                    <!-- Mensaje si no hay libros -->
-                    <p class="text-center col-span-full text-gray-500">No hay libros para mostrar en este momento.</p>
-                {% endif %}
-
-            </div>
-            <!-- FIN DEL CONTENIDO DINÁMICO -->
-        </section>
-    </main>
-
-    <footer class="bg-slate-800 mt-16 py-8">
-        <div class="container mx-auto px-6 text-center text-gray-400">
-            <p>&copy; 2025 Biblioteca Cesun. Todos los derechos reservados.</p>
-            <p class="text-xs mt-2">Desarrollado por: CELIZ MARTINEZ DANIEL (23030536) &bull; RIVERA BARRERA PAUL (23030497) &bull; ISMAEL CERVANTES CARRANZA (23030705)</p>
-        </div>
-    </footer>
+<body>
+    <h1>Catálogo de Libros</h1>
+    
+    {% if libros %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Autor</th>
+                    <th>Nacionalidad</th>
+                    <th>Género</th>
+                    <th>Páginas</th>
+                    <th>Año</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros %}
+                    <tr>
+                        <td>{{ libro.titulo }}</td>
+                        <td>{{ libro.autor.nombre }}</td>
+                        <td>{{ libro.autor.nacionalidad }}</td>
+                        <td>{{ libro.genero }}</td>
+                        <td>{{ libro.paginas }}</td>
+                        <td>{{ libro.año }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No hay libros en el catálogo.</p>
+    {% endif %}
 
 </body>
 </html>
-
