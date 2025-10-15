@@ -96,10 +96,10 @@ Para configurar la base de datos por primera vez o para reiniciarla, sigue estos
 ### Ejecución del Servidor
 
 Una vez completada la instalación y configuración de la base de datos:
-
-```bash
-
+ ```bash
 flask run
+ ```
+
 
 ### 🤝 Contribuciones
 
